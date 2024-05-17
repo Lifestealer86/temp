@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::post('login', [UserController::class, 'authorization']);
-Route::post('register', [UserController::class, 'registration']);
+Route::post('login', [UserController::class, 'authorization'])->withoutMiddleware(['auth:sanctum']);
+Route::post('register', [UserController::class, 'registration'])->withoutMiddleware(['auth:sanctum']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('payments')->group(function () {
+    Route::get('/', [PaymentController::class, 'show']);
 });
