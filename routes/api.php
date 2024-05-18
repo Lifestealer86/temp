@@ -21,4 +21,6 @@ Route::post('register', [UserController::class, 'registration'])->withoutMiddlew
 
 Route::prefix('payments')->group(function () {
     Route::get('/', [PaymentController::class, 'show']);
+    Route::get('/my', [PaymentController::class, 'my']);
+    Route::post('/add', [PaymentController::class, 'store']);
 });
