@@ -12,6 +12,7 @@ class Payment extends Model
     protected $fillable = [
         'name',
         'money',
-        'date'
+        'date',
+        'user_id'
     ];
 }
