@@ -16,11 +16,11 @@ use App\Http\Controllers\PaymentController;
 |
 */
 
-Route::post('login', [UserController::class, 'authorization'])->withoutMiddleware(['auth:sanctum']);
-Route::post('register', [UserController::class, 'registration'])->withoutMiddleware(['auth:sanctum']);
+Route::post('login', [UserController::class, 'authorization']);
+Route::post('register', [UserController::class, 'registration']);
 
 Route::prefix('payments')->group(function () {
-    Route::get('/', [PaymentController::class, 'show']);
-    Route::get('/my', [PaymentController::class, 'my']);
-    Route::post('/add', [PaymentController::class, 'store']);
+    Route::get('/', [PaymentController::class, 'show'])->middleware('auth:sanctum');
+    Route::get('/my', [PaymentController::class, 'my'])->middleware('auth:sanctum');
+    Route::post('/add', [PaymentController::class, 'store'])->middleware('auth:sanctum');
 });

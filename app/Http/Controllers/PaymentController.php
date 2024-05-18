@@ -27,8 +27,6 @@ class PaymentController extends Controller
 
     public function my()
     {
-        $user = auth('auth')->user();
-        if($user) return $user;
-        else return $user;
+        return Auth::user()->takePayments();
     }
 }
