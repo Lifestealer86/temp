@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\Request;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Payment>
@@ -17,11 +18,12 @@ class PaymentFactory extends Factory
      */
     public function definition(): array
     {
+        $user_id = User::all()->random()->id;
         return [
-            'name' => $this->faker->name(),
-            'money' => $this->frand(1, 999999, 2),
+            'name' => User::find($user_id)->name,
+            'money' => $this->frand(1, 999999999, 2),
             'date' => $this->faker->date,
-            'user_id' => User::all()->random()
+            'user_id' => User::find($user_id)->id
         ];
     }
 
