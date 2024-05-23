@@ -34,4 +34,12 @@ class UserController extends Controller
                 ->createToken(Str::random(5))->plainTextToken
         ];
     }
+    public function logout(Request $request): array
+    {
+        $request->user()->currentAccessToken()->delete();
+        return [
+            'success' => true,
+            'message' => 'Logout'
+        ];
+    }
 }

@@ -18,6 +18,7 @@ use App\Http\Controllers\PaymentController;
 
 Route::post('login', [UserController::class, 'authorization']);
 Route::post('register', [UserController::class, 'registration']);
+Route::get('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::prefix('payments')->group(function () {
     Route::get('/', [PaymentController::class, 'show'])->middleware('auth:sanctum');
